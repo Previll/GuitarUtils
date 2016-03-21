@@ -1,0 +1,65 @@
+﻿{
+	"scales": [
+		{
+			"name": "Major",
+			"intervals": [ 2, 2, 1, 2, 2, 2, 1 ]
+		},
+		{
+			"name": "Minor",
+			"intervals": [ 2, 1, 2, 2, 1, 2, 2 ]
+		},
+		{
+			"name": "Major Pentatonic",
+			"intervals": [ 2, 2, 1, 2, 2, 2, 1 ]
+		},
+		{
+			"name": "Minor Pentatonic",
+			"intervals": [ 2, 1, 2, 2, 1, 2, 2 ]
+		}
+	],
+	"chords": [
+		{
+			"name": "Major",
+			"suffix": "M",
+			"intervals": [ 1, 5, 8 ]
+		},
+		{
+			"name": "Minor",
+			"suffix": "m",
+			"intervals": [ 1, 4, 8 ]
+		},
+		{
+			"name": "Dominant Seventh",
+			"suffix": "7",
+			"intervals": [ 1, 4, 8, 11 ]
+		},
+		{
+			"name": "Diminished",
+			"suffix": "dim",
+			"intervals": [ 1, 4, 7 ]
+		},
+		{
+			"name": "Augmented",
+			"suffix": "aug",
+			"intervals": [ 1, 5, 9 ]
+		}
+	],
+	"tunings": [
+		{
+			"name": "Standard",
+			"tuning": [ "E2", "A2", "D3", "G3", "B3", "E4" ]
+		},
+		{
+			"name": "Down Half-Step",
+			"tuning": [ "D#2", "G#2", "C#3", "F#3", "A#3", "D#4" ]
+		},
+		{
+			"name": "Up Half-Step",
+			"tuning": [ "E#2", "A#2", "D#3", "G#3", "B#3", "E#4" ]
+		},
+		{
+			"name": "Drop D",
+			"tuning": [ "D2", "A2", "D3", "G3", "B3", "E4" ]
+		}
+	]
+}

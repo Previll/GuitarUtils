@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GuitarUtils.Models;
+using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace GuitarUtils
 {
 	static class Program
 	{
+		public static Data Data = null;
+
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -16,7 +17,9 @@ namespace GuitarUtils
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
+
+			Data = DataSerializer.ReadFromJson(Path.Combine(Environment.CurrentDirectory, "Data.json"));
+			Application.Run(new HomeForm());
 		}
 	}
 }
