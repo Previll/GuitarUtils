@@ -7,7 +7,7 @@ namespace GuitarUtils
 {
 	static class Program
 	{
-		public static Data Data = null;
+		public static DataModel Data = null;
 
 		/// <summary>
 		/// The main entry point for the application.
@@ -19,7 +19,7 @@ namespace GuitarUtils
 			Application.SetCompatibleTextRenderingDefault(false);
 
 			Data = DataSerializer.ReadFromJson(Path.Combine(Environment.CurrentDirectory, "Data.json"));
-			Application.Run(new HomeForm());
+			Application.Run(new HomeFrm());
 		}
 	}
 }

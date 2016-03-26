@@ -1,16 +1,15 @@
-﻿using GuitarUtils.Models;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Xml;
 
-namespace GuitarUtils
+namespace GuitarUtils.Models
 {
 	static class DataSerializer
 	{
-		public static Data ReadFromJson(string path)
+		public static DataModel ReadFromJson(string path)
 		{
-			var dataContractSerializer = new DataContractJsonSerializer(typeof(Data));
+			var dataContractSerializer = new DataContractJsonSerializer(typeof(DataModel));
 			using (var fileStream = File.OpenRead(path))
 			{
 				using (var streamReader = new StreamReader(fileStream))
@@ -19,16 +18,16 @@ namespace GuitarUtils
 					var bytes = streamReader.CurrentEncoding.GetBytes(text);
 					using (var jsonReader = JsonReaderWriterFactory.CreateJsonReader(bytes, new XmlDictionaryReaderQuotas()))
 					{
-						var data = dataContractSerializer.ReadObject(jsonReader) as Data;
+						var data = dataContractSerializer.ReadObject(jsonReader) as DataModel;
 						return data;
 					}
 				}
 			}
 		}
 
-		public static void WriteToJson(Data data, string path, Encoding encoding)
+		public static void WriteToJson(DataModel data, string path, Encoding encoding)
 		{
-			var dataContractSerializer = new DataContractJsonSerializer(typeof(Data));
+			var dataContractSerializer = new DataContractJsonSerializer(typeof(DataModel));
 			using (var stream = new MemoryStream())
 			{
 				using (var writer = JsonReaderWriterFactory.CreateJsonWriter(stream, encoding, false))

@@ -316,53 +316,6 @@ namespace GuitarUtils
 			}
 		}
 
-		private void DrawBars()
-		{
-			var bars = new Dictionary<char, Bar>();
-			for (int i = 0; i < 5; i++)
-			{
-				if (_chordPositions[i] != MUTED && _chordPositions[i] != OPEN && _fingers[i] != NO_FINGER && !bars.ContainsKey(_fingers[i]))
-				{
-					Bar bar = new Bar { Str = i, Pos = _chordPositions[i], Length = 0, Finger = _fingers[i] };
-					for (int j = i + 1; j < 6; j++)
-					{
-						if (_fingers[j] == bar.Finger && _chordPositions[j] == _chordPositions[i])
-						{
-							bar.Length = j - i;
-						}
-					}
-					if (bar.Length > 0)
-					{
-						bars.Add(bar.Finger, bar);
-					}
-				}
-			}
-
-			float totalFretWidth = _fretWidth + _lineWidth;
-			float arcWidth = _dotWidth / 7;
-			foreach (Bar bar in bars.Values)
-			{
-				float yTempOffset = 0.0f;
-
-				if (bar.Pos == 1)
-				{  // the bar must go a little higher in order to be shown correctly
-					yTempOffset = -0.3f * totalFretWidth;
-				}
-
-				float xstart = _xstart + bar.Str * totalFretWidth - (_dotWidth / 2);
-				float y = _ystart + (bar.Pos - _baseFret) * totalFretWidth - (0.6f * totalFretWidth) + yTempOffset;
-				Pen pen = new Pen(ForegroundBrush, arcWidth);
-				Pen pen2 = new Pen(ForegroundBrush, 1.3f * arcWidth);
-				//_graphics.DrawLine(pen, xstart, y, xend, y);
-
-				float barWidth = bar.Length * totalFretWidth + _dotWidth;
-
-				_graphics.DrawArc(pen, xstart, y, barWidth, totalFretWidth, -1, -178);
-				_graphics.DrawArc(pen2, xstart, y - arcWidth, barWidth, totalFretWidth + arcWidth, -4, -172);
-				_graphics.DrawArc(pen2, xstart, y - 1.5f * arcWidth, barWidth, totalFretWidth + 3 * arcWidth, -20, -150);
-			}
-		}
-
 		private void DrawChordPositions()
 		{
 			float yoffset = _ystart - _fretWidth;
@@ -403,22 +356,6 @@ namespace GuitarUtils
 					_graphics.DrawLine(pen, markerXpos, ypos, markerXpos + _markerWidth, ypos + _markerWidth);
 					_graphics.DrawLine(pen, markerXpos, ypos + _markerWidth, markerXpos + _markerWidth, ypos);
 				}
-			}
-		}
-
-		private void DrawFingers()
-		{
-			float xpos = _xstart + (0.5f * _lineWidth);
-			float ypos = _ystart + _boxHeight;
-			Font font = new Font(FONT_NAME, _fingerFontSize);
-			foreach (char finger in _fingers)
-			{
-				if (finger != NO_FINGER)
-				{
-					SizeF charSize = _graphics.MeasureString(finger.ToString(), font);
-					_graphics.DrawString(finger.ToString(), font, ForegroundBrush, xpos - (0.5f * charSize.Width), ypos);
-				}
-				xpos += (_fretWidth + _lineWidth);
 			}
 		}
 
@@ -489,6 +426,69 @@ namespace GuitarUtils
 				Font fretFont = new Font(FONT_NAME, _fretFontSize, GraphicsUnit.Pixel);
 				float offset = (fretFont.Size - _fretWidth) / 2f;
 				_graphics.DrawString(_baseFret + "fr", fretFont, ForegroundBrush, _xstart + _boxWidth + 0.3f * _fretWidth, _ystart - offset);
+			}
+		}
+
+		private void DrawFingers()
+		{
+			float xpos = _xstart + (0.5f * _lineWidth);
+			float ypos = _ystart + _boxHeight;
+			Font font = new Font(FONT_NAME, _fingerFontSize);
+			foreach (char finger in _fingers)
+			{
+				if (finger != NO_FINGER)
+				{
+					SizeF charSize = _graphics.MeasureString(finger.ToString(), font);
+					_graphics.DrawString(finger.ToString(), font, ForegroundBrush, xpos - (0.5f * charSize.Width), ypos);
+				}
+				xpos += (_fretWidth + _lineWidth);
+			}
+		}
+
+		private void DrawBars()
+		{
+			var bars = new Dictionary<char, Bar>();
+			for (int i = 0; i < 5; i++)
+			{
+				if (_chordPositions[i] != MUTED && _chordPositions[i] != OPEN && _fingers[i] != NO_FINGER && !bars.ContainsKey(_fingers[i]))
+				{
+					Bar bar = new Bar { Str = i, Pos = _chordPositions[i], Length = 0, Finger = _fingers[i] };
+					for (int j = i + 1; j < 6; j++)
+					{
+						if (_fingers[j] == bar.Finger && _chordPositions[j] == _chordPositions[i])
+						{
+							bar.Length = j - i;
+						}
+					}
+					if (bar.Length > 0)
+					{
+						bars.Add(bar.Finger, bar);
+					}
+				}
+			}
+
+			float totalFretWidth = _fretWidth + _lineWidth;
+			float arcWidth = _dotWidth / 7;
+			foreach (Bar bar in bars.Values)
+			{
+				float yTempOffset = 0.0f;
+
+				if (bar.Pos == 1)
+				{  // the bar must go a little higher in order to be shown correctly
+					yTempOffset = -0.3f * totalFretWidth;
+				}
+
+				float xstart = _xstart + bar.Str * totalFretWidth - (_dotWidth / 2);
+				float y = _ystart + (bar.Pos - _baseFret) * totalFretWidth - (0.6f * totalFretWidth) + yTempOffset;
+				Pen pen = new Pen(ForegroundBrush, arcWidth);
+				Pen pen2 = new Pen(ForegroundBrush, 1.3f * arcWidth);
+				//_graphics.DrawLine(pen, xstart, y, xend, y);
+
+				float barWidth = bar.Length * totalFretWidth + _dotWidth;
+
+				_graphics.DrawArc(pen, xstart, y, barWidth, totalFretWidth, -1, -178);
+				_graphics.DrawArc(pen2, xstart, y - arcWidth, barWidth, totalFretWidth + arcWidth, -4, -172);
+				_graphics.DrawArc(pen2, xstart, y - 1.5f * arcWidth, barWidth, totalFretWidth + 3 * arcWidth, -20, -150);
 			}
 		}
 	}
