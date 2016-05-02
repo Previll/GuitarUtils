@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace GuitarUtils.Models
 {
@@ -9,11 +10,11 @@ namespace GuitarUtils.Models
 		public string Name { get; private set; }
 
 		[DataMember(Name = "strings", Order = 1)]
-		public string[] Strings { get; private set; }
+		public IList<string> Strings { get; private set; }
 
 		public override string ToString()
 		{
-			return $"{Name} {nameof(Tuning)}";
+			return $"{Name} Tuning";
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace GuitarUtils.Models
 {
@@ -9,7 +10,7 @@ namespace GuitarUtils.Models
 		public string Name { get; private set; }
 
 		[DataMember(Name = "intervals", Order = 1)]
-		public int[] Intervals { get; private set; }
+		public IList<int> Intervals { get; private set; }
 
 		public override string ToString()
 		{

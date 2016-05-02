@@ -3,7 +3,7 @@
 namespace GuitarUtils.Models
 {
 	[DataContract]
-	class DataModel
+	class Data
 	{
 		[DataMember(Name = "scales", Order = 0)]
 		public Scales Scales { get; private set; }

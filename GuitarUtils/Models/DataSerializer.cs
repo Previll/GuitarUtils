@@ -7,9 +7,9 @@ namespace GuitarUtils.Models
 {
 	static class DataSerializer
 	{
-		public static DataModel ReadFromJson(string path)
+		public static Data ReadFromJson(string path)
 		{
-			var dataContractSerializer = new DataContractJsonSerializer(typeof(DataModel));
+			var dataContractSerializer = new DataContractJsonSerializer(typeof(Data));
 			using (var fileStream = File.OpenRead(path))
 			{
 				using (var streamReader = new StreamReader(fileStream))
@@ -18,16 +18,16 @@ namespace GuitarUtils.Models
 					var bytes = streamReader.CurrentEncoding.GetBytes(text);
 					using (var jsonReader = JsonReaderWriterFactory.CreateJsonReader(bytes, new XmlDictionaryReaderQuotas()))
 					{
-						var data = dataContractSerializer.ReadObject(jsonReader) as DataModel;
+						var data = dataContractSerializer.ReadObject(jsonReader) as Data;
 						return data;
 					}
 				}
 			}
 		}
 
-		public static void WriteToJson(DataModel data, string path, Encoding encoding)
+		public static void WriteToJson(Data data, string path, Encoding encoding)
 		{
-			var dataContractSerializer = new DataContractJsonSerializer(typeof(DataModel));
+			var dataContractSerializer = new DataContractJsonSerializer(typeof(Data));
 			using (var stream = new MemoryStream())
 			{
 				using (var writer = JsonReaderWriterFactory.CreateJsonWriter(stream, encoding, false))

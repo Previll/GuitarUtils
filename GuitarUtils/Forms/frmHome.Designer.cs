@@ -1,6 +1,6 @@
-﻿namespace GuitarUtils
+﻿namespace GuitarUtils.Forms
 {
-	partial class HomeFrm
+	partial class frmHome
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,26 +28,38 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.ScalesBtn = new System.Windows.Forms.Button();
+			this.btnScales = new System.Windows.Forms.Button();
+			this.btnChords = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
-			// ScalesBtn
+			// btnScales
 			// 
-			this.ScalesBtn.Location = new System.Drawing.Point(339, 12);
-			this.ScalesBtn.Name = "ScalesBtn";
-			this.ScalesBtn.Size = new System.Drawing.Size(185, 34);
-			this.ScalesBtn.TabIndex = 0;
-			this.ScalesBtn.Text = "Scales";
-			this.ScalesBtn.UseVisualStyleBackColor = true;
-			this.ScalesBtn.Click += new System.EventHandler(this.ScalesBtn_Click);
+			this.btnScales.Location = new System.Drawing.Point(339, 12);
+			this.btnScales.Name = "btnScales";
+			this.btnScales.Size = new System.Drawing.Size(185, 34);
+			this.btnScales.TabIndex = 0;
+			this.btnScales.Text = "Scales";
+			this.btnScales.UseVisualStyleBackColor = true;
+			this.btnScales.Click += new System.EventHandler(this.ScalesBtn_Click);
 			// 
-			// HomeForm
+			// btnChords
+			// 
+			this.btnChords.Location = new System.Drawing.Point(339, 68);
+			this.btnChords.Name = "btnChords";
+			this.btnChords.Size = new System.Drawing.Size(185, 34);
+			this.btnChords.TabIndex = 1;
+			this.btnChords.Text = "Chords";
+			this.btnChords.UseVisualStyleBackColor = true;
+			this.btnChords.Click += new System.EventHandler(this.btnChords_Click);
+			// 
+			// frmHome
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(536, 443);
-			this.Controls.Add(this.ScalesBtn);
-			this.Name = "HomeForm";
+			this.Controls.Add(this.btnChords);
+			this.Controls.Add(this.btnScales);
+			this.Name = "frmHome";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Guitar Utils";
@@ -57,7 +69,8 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button ScalesBtn;
+		private System.Windows.Forms.Button btnScales;
+		private System.Windows.Forms.Button btnChords;
 	}
 }
 

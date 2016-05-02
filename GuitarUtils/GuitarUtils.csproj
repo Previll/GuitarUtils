@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MoreLinq, Version=2.0.19309.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.2.0.0-beta03\lib\net35\MoreLinq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -47,39 +51,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Canvases\FretboardCanvas.cs" />
-    <Compile Include="ChordBoxImage.cs" />
+    <Compile Include="Canvas\CanvasBase.cs" />
+    <Compile Include="Canvas\ChordBoxCanvas.cs" />
+    <Compile Include="Canvas\FretboardCanvas.cs" />
+    <Compile Include="Music\Instrument.cs" />
+    <Compile Include="Music\NoteLocation.cs" />
     <Compile Include="Drawing\LineF.cs" />
     <Compile Include="Drawing\OffsetF.cs" />
     <Compile Include="Drawing\PointFHelper.cs" />
-    <Compile Include="Models\Chord.cs" />
-    <Compile Include="Models\DataSerializer.cs" />
-    <Compile Include="HomeFrm.cs">
+    <Compile Include="Forms\frmChords.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HomeFrm.Designer.cs">
-      <DependentUpon>HomeFrm.cs</DependentUpon>
+    <Compile Include="Forms\frmChords.Designer.cs">
+      <DependentUpon>frmChords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Chord.cs" />
+    <Compile Include="Models\DataSerializer.cs" />
+    <Compile Include="Forms\frmHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmHome.Designer.cs">
+      <DependentUpon>frmHome.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Chords.cs" />
-    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\Data.cs" />
     <Compile Include="Models\Scales.cs" />
     <Compile Include="Models\Tuning.cs" />
     <Compile Include="Models\Tunings.cs" />
+    <Compile Include="Music\ChordFinder.cs" />
+    <Compile Include="Music\ChordFingering.cs" />
+    <Compile Include="Music\InstrumentString.cs" />
     <Compile Include="Music\Note.cs" />
     <Compile Include="Music\Pitch.cs" />
-    <Compile Include="Music\PitchHelper.cs" />
-    <Compile Include="Music\Scale.cs" />
+    <Compile Include="Music\PitchedBase.cs" />
+    <Compile Include="Music\PitchedScale.cs" />
+    <Compile Include="Music\Tuning.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Scale.cs" />
-    <Compile Include="ScalesFrm.cs">
+    <Compile Include="Forms\frmScales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ScalesFrm.Designer.cs">
-      <DependentUpon>ScalesFrm.cs</DependentUpon>
+    <Compile Include="Forms\frmScales.Designer.cs">
+      <DependentUpon>frmScales.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="HomeFrm.resx">
-      <DependentUpon>HomeFrm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\frmChords.resx">
+      <DependentUpon>frmChords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmHome.resx">
+      <DependentUpon>frmHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -90,12 +110,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ScalesFrm.resx">
-      <DependentUpon>ScalesFrm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\frmScales.resx">
+      <DependentUpon>frmScales.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Data.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="Music\PitchedChord.cs" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
